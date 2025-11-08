@@ -121,64 +121,76 @@
 }
 // });
 
-import React, { useState } from "react";
-import { Switch, Text, View } from "react-native";
-import WelcomeScreen from "./app/screens/WelcomeScreen";
-import ViewImageScreen from "./app/screens/ViewImageScreen";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+// import React, { useState } from "react";
+// import { Switch, Text, View } from "react-native";
+// import WelcomeScreen from "./app/screens/WelcomeScreen";
+// import ViewImageScreen from "./app/screens/ViewImageScreen";
+// import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-import AppText from "./app/components/AppText";
-import AppButton from "./app/components/AppButton";
-import Card from "./app/components/Card";
-import ListingDetailsScreen from "./app/screens/ListingDetailsScreen";
-import MessagesScreen from "./app/screens/MessagesScreen";
-import {
-  GestureHandlerRootView,
-  TextInput,
-} from "react-native-gesture-handler";
-import AccountScreen from "./app/screens/AccountScreen";
-import ListingsScreen from "./app/screens/ListingsScreen";
-import Screen from "./app/components/Screen";
-import AppTextInput from "./app/components/AppTextInput";
-import AppPicker from "./app/components/AppPicker";
+// import AppText from "./app/components/AppText";
+// import AppButton from "./app/components/AppButton";
+// import Card from "./app/components/Card";
+// import ListingDetailsScreen from "./app/screens/ListingDetailsScreen";
+// import MessagesScreen from "./app/screens/MessagesScreen";
+// import {
+//   GestureHandlerRootView,
+//   TextInput,
+// } from "react-native-gesture-handler";
+// import AccountScreen from "./app/screens/AccountScreen";
+// import ListingsScreen from "./app/screens/ListingsScreen";
+// import Screen from "./app/components/Screen";
+// import AppTextInput from "./app/components/AppTextInput";
+// import AppPicker from "./app/components/AppPicker";
 
-const categories = [
-  { label: "Furniture", value: 1 },
-  { label: "Clothing", value: 2 },
-  { label: "Cameras", value: 3 },
-];  
+// const categories = [
+//   { label: "Furniture", value: 1 },
+//   { label: "Clothing", value: 2 },
+//   { label: "Cameras", value: 3 },
+// ];  
 
-export default function App() {
-  const [firstName, setFirstName] = useState("");
-  const [isNew, setIsNew] = useState(true);
-  const [category, setCategory] = useState();
+// export default function App() {
+//   const [firstName, setFirstName] = useState("");
+//   const [isNew, setIsNew] = useState(true);
+//   const [category, setCategory] = useState();
+//   return (
+//     // <View
+//     //   style={{ backgroundColor: "#f8f4f4", padding: 20, paddingTop: 100 }}
+//     // >
+//     //   <Card title="Red Jacket for Sale" subTitle="$100" image={require("./app/assets/jacket.jpg")} />
+//     // </View>
+//     // <GestureHandlerRootView style={{ flex: 1 }}>
+//     //   <ListingsScreen />
+//     // </GestureHandlerRootView>
+//     <GestureHandlerRootView>
+//       <Screen>
+//         {/* <Text>{firstName}</Text>
+//         <TextInput
+//         secureTextEntry
+//           keyboardType="numeric"
+//           onChangeText={(text) => setFirstName(text)}
+//           placeholder="First Name"
+//           style={{ borderBottomColor: "#ccc", borderBottomWidth: 1 }}
+//         /> */}
+//         {/* <AppTextInput placeholder="Username" icon='email ' /> */}
+//         {/* <Switch
+//           value={isNew}
+//           onValueChange={(newValue) => setIsNew(newValue)}
+//         /> */}
+//         <AppPicker selectedItem={category} onSelectItem={item => setCategory(item)} items={categories} placeholder="Category" icon="apps" />
+//         <AppPicker placeholder="Email" icon="email" />
+//       </Screen>
+//     </GestureHandlerRootView>
+//   );
+// }
+
+
+import React from 'react';
+import LoginScreen from './app/screens/LoginScreen';
+
+function App(props) {
   return (
-    // <View
-    //   style={{ backgroundColor: "#f8f4f4", padding: 20, paddingTop: 100 }}
-    // >
-    //   <Card title="Red Jacket for Sale" subTitle="$100" image={require("./app/assets/jacket.jpg")} />
-    // </View>
-    // <GestureHandlerRootView style={{ flex: 1 }}>
-    //   <ListingsScreen />
-    // </GestureHandlerRootView>
-    <GestureHandlerRootView>
-      <Screen>
-        {/* <Text>{firstName}</Text>
-        <TextInput
-        secureTextEntry
-          keyboardType="numeric"
-          onChangeText={(text) => setFirstName(text)}
-          placeholder="First Name"
-          style={{ borderBottomColor: "#ccc", borderBottomWidth: 1 }}
-        /> */}
-        {/* <AppTextInput placeholder="Username" icon='email ' /> */}
-        {/* <Switch
-          value={isNew}
-          onValueChange={(newValue) => setIsNew(newValue)}
-        /> */}
-        <AppPicker selectedItem={category} onSelectItem={item => setCategory(item)} items={categories} placeholder="Category" icon="apps" />
-        <AppPicker placeholder="Email" icon="email" />
-      </Screen>
-    </GestureHandlerRootView>
+    <LoginScreen/>
   );
 }
+
+export default App;
