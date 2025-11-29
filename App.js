@@ -256,6 +256,10 @@ import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import Screen from "./app/components/Screen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import AuthNavigator from "./app/navigation/AuthNavigator";
+import NavigationTheme from "./app/navigation/NavigationTheme";
+import AppNavigator from "./app/navigation/AppNavigator";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 const Link = () => {
   const navigation = useNavigation();
@@ -313,12 +317,12 @@ const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => (
   <Tab.Navigator
-    // screenOptions={{
-    //   tabBarActiveBackgroundColor: "tomato",
-    //   tabBarActiveTintColor: "white",
-    //   tabBarInactiveBackgroundColor: "lightgrey",
-    //   tabBarInactiveTintColor: "black",
-    // }}
+  // screenOptions={{
+  //   tabBarActiveBackgroundColor: "tomato",
+  //   tabBarActiveTintColor: "white",
+  //   tabBarInactiveBackgroundColor: "lightgrey",
+  //   tabBarInactiveTintColor: "black",
+  // }}
   >
     <Tab.Screen
       name="Feed"
@@ -343,9 +347,11 @@ const TabNavigator = () => (
 
 function App(props) {
   return (
-    <NavigationContainer>
-      <TabNavigator />
-    </NavigationContainer>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <NavigationContainer theme={NavigationTheme}>
+        <AppNavigator />
+      </NavigationContainer>
+    </GestureHandlerRootView>
   );
 }
 
