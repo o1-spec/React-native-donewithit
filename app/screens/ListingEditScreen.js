@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import { StyleSheet } from "react-native";
 import * as Yup from "yup";
 
@@ -12,6 +12,7 @@ import Screen from "../components/Screen";
 import CategoryPickerItem from "../components/CategoryPickerItem";
 import FormImagePicker from "../components/forms/FormImagePicker";
 import useLocation from "../hooks/useLocation";
+import UploadScreen from "./UploadScreen";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required().min(1).label("Title"),
@@ -23,7 +24,7 @@ const validationSchema = Yup.object().shape({
 
 const categories = [
   { label: "Furniture", value: 1, backgroundColor: "red", icon: "floor-lamp" },
-  { label: "Clothing", value: 2, backgroundColor: "green", icon: "t-shirt" },
+  { label: "Clothing", value: 2, backgroundColor: "green", icon: "shoe-heel" },
   { label: "Camera", value: 3, backgroundColor: "blue", icon: "camera" },
   { label: "Cars", value: 4, backgroundColor: "orange", icon: "car" },
   { label: "Cameras", value: 5, backgroundColor: "purple", icon: "camera" },
@@ -43,11 +44,52 @@ const categories = [
   { label: "Other", value: 9, backgroundColor: "grey", icon: "application" },
 ];
 
-function ListingEditScreen() {
-    const location = useLocation();
+function ListingEditScreen({ navigation }) {
+  const location = useLocation();
+  const [uploadVisible, setUploadVisible] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const resetFormRef = useRef(null);  // Use useRef instead of useState
+
+  const handleSubmit = async (values, { resetForm }) => {
+    setProgress(0);
+    setUploadVisible(true);
+    resetFormRef.current = resetForm;  // Store in ref
+
+    const totalSteps = 20;
+    for (let i = 0; i <= totalSteps; i++) {
+      setProgress(i / totalSteps);
+      await new Promise((resolve) => setTimeout(resolve, 150));
+    }
+
+    const listing = {
+      ...values,
+      location,
+    };
+
+    console.log("Listing submitted:", listing);
+  };
+
+  const handleUploadDone = () => {
+    setUploadVisible(false);
+    setProgress(0);
+    
+    // Reset the form
+    if (resetFormRef.current) {
+      resetFormRef.current();
+      resetFormRef.current = null;
+    }
+
+    // Navigate to listings
+    navigation.navigate("Listings");
+  };
 
   return (
     <Screen style={styles.container}>
+      <UploadScreen
+        onDone={handleUploadDone}
+        progress={progress}
+        visible={uploadVisible}
+      />
       <Form
         initialValues={{
           title: "",
@@ -56,7 +98,7 @@ function ListingEditScreen() {
           category: null,
           images: [],
         }}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={handleSubmit}
         validationSchema={validationSchema}
       >
         <FormImagePicker name="images" />
@@ -94,4 +136,5 @@ const styles = StyleSheet.create({
     padding: 10,
   },
 });
+
 export default ListingEditScreen;

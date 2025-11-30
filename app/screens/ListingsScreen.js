@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { FlatList, StyleSheet } from "react-native";
 
 import Screen from "../components/Screen";
 import Card from "../components/Card";
 import colors from "../config/colors";
 import route from "../navigation/route";
+import ActivityIndicator from "../components/ActivityIndicator";
 
 const listings = [
   {
@@ -21,11 +22,34 @@ const listings = [
   },
 ];
 
-function ListingsScreen({navigation}) {
+function ListingsScreen({ navigation }) {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
+
+  useEffect(() => {
+    loadListings();
+  }, []);
+
+  const loadListings = async () => {
+    setLoading(true);
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    setData(listings);
+    setLoading(false);
+  };
+
+  const handleRefresh = async () => {
+    setRefreshing(true);
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    setData(listings);
+    setRefreshing(false);
+  };
+
   return (
     <Screen style={styles.screen}>
+      <ActivityIndicator visible={loading} />
       <FlatList
-        data={listings}
+        data={data}
         keyExtractor={(listing) => listing.id.toString()}
         renderItem={({ item }) => (
           <Card
@@ -35,6 +59,8 @@ function ListingsScreen({navigation}) {
             onPress={() => navigation.navigate(route.LISTING_DETAILS, item)}
           />
         )}
+        refreshing={refreshing}
+        onRefresh={handleRefresh}
       />
     </Screen>
   );

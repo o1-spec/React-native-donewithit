@@ -1,11 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Button,
   FlatList,
   Modal,
   StyleSheet,
-  TextInput,
-  Touchable,
   TouchableWithoutFeedback,
   View,
 } from "react-native";
@@ -13,7 +11,7 @@ import AppText from "./AppText";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import defaultStyles from "../config/style";
 import Screen from "./Screen";
-// import PickerItem from "./PickerItem";
+import PickerItem from "./PickerItem"; 
 
 function AppPicker({
   icon,
@@ -25,7 +23,7 @@ function AppPicker({
   width = "100%",
   numberOfColumns = 1,
 }) {
-  const [modalVisible, setModalVisible] = React.useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
 
   return (
     <>
@@ -57,7 +55,7 @@ function AppPicker({
           <FlatList
             data={items}
             keyExtractor={(item) => item.value.toString()}
-            numberOfColumns={numberOfColumns}
+            numColumns={numberOfColumns}
             renderItem={({ item }) => (
               <PickerItemComponent
                 item={item}
