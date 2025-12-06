@@ -249,110 +249,299 @@
 
 // export default App;
 
-import React from "react";
-import { Button, Text } from "react-native";
-import { createStackNavigator } from "@react-navigation/stack";
-import { NavigationContainer, useNavigation } from "@react-navigation/native";
-import Screen from "./app/components/Screen";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import AuthNavigator from "./app/navigation/AuthNavigator";
+// import React from "react";
+// import { Button, Text } from "react-native";
+// import { createStackNavigator } from "@react-navigation/stack";
+// import { NavigationContainer, useNavigation } from "@react-navigation/native";
+// import Screen from "./app/components/Screen";
+// import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+// import { MaterialCommunityIcons } from "@expo/vector-icons";
+// import AuthNavigator from "./app/navigation/AuthNavigator";
+// import NavigationTheme from "./app/navigation/NavigationTheme";
+// import AppNavigator from "./app/navigation/AppNavigator";
+// import { GestureHandlerRootView } from "react-native-gesture-handler";
+// import OfflineNotice from "./app/components/OfflineNotice";
+
+// const Link = () => {
+//   const navigation = useNavigation();
+//   return (
+//     <Button title="Click" onPress={() => navigation.navigate("TweetDetails")} />
+//   );
+// };
+
+// const Tweets = ({ navigation }) => (
+//   <Screen>
+//     <Text>Tweets</Text>
+//     <Button
+//       title="View Tweet"
+//       onPress={() => navigation.navigate("TweetDetails", { id: 1 })}
+//     />
+//   </Screen>
+// );
+
+// const TweetDetails = ({ route }) => (
+//   <Screen>
+//     <Text>TweetDetails{route.params.id}</Text>
+//   </Screen>
+// );
+
+// const Stack = createStackNavigator();
+
+// const FeedNavigator = () => {
+//   return (
+//     <Stack.Navigator
+//       screenOptions={{
+//         headerStyle: { backgroundColor: "dodgerblue" },
+//         headerTintColor: "white",
+//       }}
+//     >
+//       <Stack.Screen
+//         name="Tweets"
+//         component={Tweets}
+//         options={{
+//           headerStyle: { backgroundColor: "tomato" },
+//           headerTintColor: "white",
+//         }}
+//       />
+//       <Stack.Screen name="TweetDetails" component={TweetDetails} />
+//     </Stack.Navigator>
+//   );
+// };
+
+// const AccountNavigator = () => (
+//   <Screen>
+//     <Text>Account</Text>
+//   </Screen>
+// );
+
+// const Tab = createBottomTabNavigator();
+
+// const TabNavigator = () => (
+//   <Tab.Navigator
+//   // screenOptions={{
+//   //   tabBarActiveBackgroundColor: "tomato",
+//   //   tabBarActiveTintColor: "white",
+//   //   tabBarInactiveBackgroundColor: "lightgrey",
+//   //   tabBarInactiveTintColor: "black",
+//   // }}
+//   >
+//     <Tab.Screen
+//       name="Feed"
+//       component={FeedNavigator}
+//       options={{
+//         tabBarIcon: ({ size, color }) => (
+//           <MaterialCommunityIcons name="home" size={size} color={color} />
+//         ),
+//       }}
+//     />
+//     <Tab.Screen
+//       name="Account"
+//       component={AccountNavigator}
+//       options={{
+//         tabBarIcon: ({ size, color }) => (
+//           <MaterialCommunityIcons name="account" size={size} color={color} />
+//         ),
+//       }}
+//     />
+//   </Tab.Navigator>
+// );
+
+// function App(props) {
+//   return (
+//     <>
+//       <OfflineNotice />
+//       <GestureHandlerRootView style={{ flex: 1 }}>
+//         <NavigationContainer theme={NavigationTheme}>
+//           <AuthNavigator />
+//         </NavigationContainer>
+//       </GestureHandlerRootView>
+//     </>
+//   );
+// }
+
+// export default App;
+
+// import React, { useEffect, useState } from 'react';
+// import { View, Text, Button, StyleSheet } from 'react-native';
+// import AsyncStorage from '@react-native-async-storage/async-storage';
+
+// function App(props) {
+//   const [name, setName] = useState('');
+
+//   // Store data
+//   const storeData = async () => {
+//     try {
+//       await AsyncStorage.setItem('username', 'John Doe');
+//       await AsyncStorage.setItem('age', '25');
+//       console.log('Data stored successfully!');
+//     } catch (error) {
+//       console.log('Error storing data:', error);
+//     }
+//   };
+
+//   // Retrieve data
+//   const getData = async () => {
+//     try {
+//       const username = await AsyncStorage.getItem('username');
+//       const age = await AsyncStorage.getItem('age');
+//       console.log('Username:', username);
+//       console.log('Age:', age);
+//       setName(username || 'No data found');
+//     } catch (error) {
+//       console.log('Error retrieving data:', error);
+//     }
+//   };
+
+//   // Store object
+//   const storeObject = async () => {
+//     try {
+//       const user = {
+//         name: 'Jane Smith',
+//         email: 'jane@example.com',
+//         age: 30,
+//       };
+//       await AsyncStorage.setItem('user', JSON.stringify(user));
+//       console.log('Object stored successfully!');
+//     } catch (error) {
+//       console.log('Error storing object:', error);
+//     }
+//   };
+
+//   // Retrieve object
+//   const getObject = async () => {
+//     try {
+//       const userJson = await AsyncStorage.getItem('user');
+//       if (userJson !== null) {
+//         const user = JSON.parse(userJson);
+//         console.log('User object:', user);
+//         setName(`${user.name} (${user.email})`);
+//       }
+//     } catch (error) {
+//       console.log('Error retrieving object:', error);
+//     }
+//   };
+
+//   // Delete data
+//   const removeData = async () => {
+//     try {
+//       await AsyncStorage.removeItem('username');
+//       console.log('Data removed successfully!');
+//       setName('');
+//     } catch (error) {
+//       console.log('Error removing data:', error);
+//     }
+//   };
+
+//   // Clear all data
+//   const clearAll = async () => {
+//     try {
+//       await AsyncStorage.clear();
+//       console.log('All data cleared!');
+//       setName('');
+//     } catch (error) {
+//       console.log('Error clearing data:', error);
+//     }
+//   };
+
+//   // Get all keys
+//   const getAllKeys = async () => {
+//     try {
+//       const keys = await AsyncStorage.getAllKeys();
+//       console.log('All keys:', keys);
+//     } catch (error) {
+//       console.log('Error getting keys:', error);
+//     }
+//   };
+
+//   return (
+//     <View style={styles.container}>
+//       <Text style={styles.title}>AsyncStorage Test</Text>
+//       <Text style={styles.result}>{name || 'No data loaded'}</Text>
+
+//       <Button title="Store Simple Data" onPress={storeData} />
+//       <Button title="Get Simple Data" onPress={getData} />
+//       <Button title="Store Object" onPress={storeObject} />
+//       <Button title="Get Object" onPress={getObject} />
+//       <Button title="Remove Data" onPress={removeData} />
+//       <Button title="Clear All" onPress={clearAll} />
+//       <Button title="Get All Keys" onPress={getAllKeys} />
+//     </View>
+//   );
+// }
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//     padding: 20,
+//     gap: 10,
+//   },
+//   title: {
+//     fontSize: 24,
+//     fontWeight: 'bold',
+//     marginBottom: 20,
+//   },
+//   result: {
+//     fontSize: 18,
+//     marginBottom: 20,
+//     color: 'dodgerblue',
+//   },
+// });
+
+// export default App;
+
+
+import React, { useState, useEffect } from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import * as SplashScreen from "expo-splash-screen";
+
 import NavigationTheme from "./app/navigation/NavigationTheme";
 import AppNavigator from "./app/navigation/AppNavigator";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
+import OfflineNotice from "./app/components/OfflineNotice";
+import AuthNavigator from "./app/navigation/AuthNavigator";
+import AuthContext from "./app/auth/context";
+import authStorage from "./app/auth/storage";
 
-const Link = () => {
-  const navigation = useNavigation();
-  return (
-    <Button title="Click" onPress={() => navigation.navigate("TweetDetails")} />
-  );
+SplashScreen.preventAutoHideAsync();
+
+export default function App() {
+  const [user, setUser] = useState(null);
+  const [isReady, setIsReady] = useState(false);
+
+const restoreUser = async () => {
+  try {
+    const user = await authStorage.getUser();
+    if (user) setUser(user);
+    
+    // Add delay to see splash screen (for testing)
+    await new Promise(resolve => setTimeout(resolve, 2000)); // 2 seconds
+    
+  } catch (error) {
+    console.log("Error restoring user:", error);
+  } finally {
+    setIsReady(true);
+    await SplashScreen.hideAsync();
+  }
 };
 
-const Tweets = ({ navigation }) => (
-  <Screen>
-    <Text>Tweets</Text>
-    <Button
-      title="View Tweet"
-      onPress={() => navigation.navigate("TweetDetails", { id: 1 })}
-    />
-  </Screen>
-);
+  useEffect(() => {
+    restoreUser();
+  }, []);
 
-const TweetDetails = ({ route }) => (
-  <Screen>
-    <Text>TweetDetails{route.params.id}</Text>
-  </Screen>
-);
+  if (!isReady) {
+    return null; 
+  }
 
-const Stack = createStackNavigator();
-
-const FeedNavigator = () => {
   return (
-    <Stack.Navigator
-      screenOptions={{
-        headerStyle: { backgroundColor: "dodgerblue" },
-        headerTintColor: "white",
-      }}
-    >
-      <Stack.Screen
-        name="Tweets"
-        component={Tweets}
-        options={{
-          headerStyle: { backgroundColor: "tomato" },
-          headerTintColor: "white",
-        }}
-      />
-      <Stack.Screen name="TweetDetails" component={TweetDetails} />
-    </Stack.Navigator>
-  );
-};
-
-const AccountNavigator = () => (
-  <Screen>
-    <Text>Account</Text>
-  </Screen>
-);
-
-const Tab = createBottomTabNavigator();
-
-const TabNavigator = () => (
-  <Tab.Navigator
-  // screenOptions={{
-  //   tabBarActiveBackgroundColor: "tomato",
-  //   tabBarActiveTintColor: "white",
-  //   tabBarInactiveBackgroundColor: "lightgrey",
-  //   tabBarInactiveTintColor: "black",
-  // }}
-  >
-    <Tab.Screen
-      name="Feed"
-      component={FeedNavigator}
-      options={{
-        tabBarIcon: ({ size, color }) => (
-          <MaterialCommunityIcons name="home" size={size} color={color} />
-        ),
-      }}
-    />
-    <Tab.Screen
-      name="Account"
-      component={AccountNavigator}
-      options={{
-        tabBarIcon: ({ size, color }) => (
-          <MaterialCommunityIcons name="account" size={size} color={color} />
-        ),
-      }}
-    />
-  </Tab.Navigator>
-);
-
-function App(props) {
-  return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <NavigationContainer theme={NavigationTheme}>
-        <AppNavigator />
-      </NavigationContainer>
-    </GestureHandlerRootView>
+    <AuthContext.Provider value={{ user, setUser }}>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <OfflineNotice />
+        <NavigationContainer theme={NavigationTheme}>
+          {user ? <AppNavigator /> : <AuthNavigator />}
+        </NavigationContainer>
+      </GestureHandlerRootView>
+    </AuthContext.Provider>
   );
 }
-
-export default App;
